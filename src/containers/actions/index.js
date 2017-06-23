@@ -25,12 +25,3 @@ export function loadUserInfo() {
     }
   }
 }
-
-export function displaySk() {
-  return {
-    type: DISPLAY_SK,
-    payload: {
-      name: 'sk'
-    }
-  }
-}

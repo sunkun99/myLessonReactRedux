@@ -4,8 +4,27 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import VideoIntroduce from './VideoIntroduce';
 import VideoPlayer from './VideoPlayer';
+import { connect } from 'react-redux';
+import { loadVideo, loadUserInfo } from './actions';
+import { bindActionCreators } from 'redux';
 
-import { loadVideo, loadUserInfo, displaySk } from './actions';
+// ==================
+// 最终要交给redux管理的所有变量
+// ==================
+
+function mapStateToProps (state, ownProps) {
+   return Object.assign({}, ownProps, state);
+};
+
+// ==================
+// 最终要交给redux管理的所有action
+// 既定义哪些方法将成为action
+// ==================
+function mapDispatchToProps (dispatch, ownProps) {
+  return Object.assign({}, ownProps, {
+    actions: bindActionCreators({loadVideo, loadUserInfo}, dispatch)
+  });
+}
 
 
 class VideoDetail extends React.Component {
@@ -17,29 +36,18 @@ class VideoDetail extends React.Component {
             paragraphs: [],
             name: ''
         }
-        this.handleStateChange = this.handleStateChange.bind(this);
     }
 
-    handleStateChange() {
-        let { store } = this.props;
-        let state = store.getState();
-        this.setState(Object.assign({}, state.reducer1, state.reducer2, state.reducer3));
-    }
+  // 默认初始化时加载第一页数据
+  componentWillMount() {
+    () => loadVideo();
+  }
 
-    componentWillMount() {
-        let { store } = this.props;
-        store.subscribe(this.handleStateChange);
-    }
-
-    componentDidMount() {
-        let { store } = this.props;
-        store.dispatch(loadVideo());
-        store.dispatch(loadUserInfo());
-        store.dispatch(displaySk());
-    }
 
     render() {
-        console.log("CURRENT_STATE:" + this.state.name);
+        // const {reducer1, reducer2} = this.props;
+        // console.log("CURRENT_STATE1:" + reducer1);
+        // console.log("CURRENT_STATE2:" + reducer2);
         return (
             <div className="container">
                 <Header title={this.state.name + '正在看XXX视频'} />
@@ -56,4 +64,5 @@ class VideoDetail extends React.Component {
     }
 }
 
-export default VideoDetail;
+// export default VideoDetail;
+export default connect(mapStateToProps, mapDispatchToProps, null, { pure : false})(VideoDetail);
