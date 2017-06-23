@@ -1,0 +1,131 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+}
+
+.view-port {
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    height: 45px;
+    padding: 5px;
+    background-color: orangered;
+    background-size: 0;
+    z-index: 9;
+}
+
+header .title {
+    display: block;
+    height: 34px;
+    line-height: 33px;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: bold;
+    margin: 0 0;
+    padding: 0 5px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 100%;
+    height: 45px;
+    padding: 5px;
+    z-index: 9;
+}
+
+footer .copyrights {
+    display: block;
+    font-size: 12px;
+    color: indianred;
+    text-align: center;
+    line-height: 35px;
+}
+
+.content {
+    position: absolute;
+    top: 45px;
+    bottom: 45px;
+    overflow: auto;
+    font-size: 14px;
+    color: #212121;
+    line-height: 28px;
+}
+
+.content section {
+    padding: 5px;
+}
+
+.content section p {
+    border-bottom: 1px dashed red;
+}
+
+.content section p:first-letter {
+    color: red;
+    font-size: 18px;
+}
+
+.content video {
+    display: block;
+}
+
+.button {
+    padding: 5px;
+    font-size: 14px;
+    color: black;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.button:link, .button:visited, .button:focus, .button:hover, .button:active {
+    outline: none;
+}
+
+.video-controlls {
+    display: -webkit-box;
+    display: -webkit-flex;
+}
+
+.video-controlls .button {
+    flex: 1;
+}
