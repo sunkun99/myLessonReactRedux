@@ -1,12 +1,18 @@
 import {
   LOAD_VIDEO_DATA,
-  LOAD_USER_INFO,
-  DISPLAY_SK
+  LOAD_USER_INFO
 } from '../actions/types';
 
 import {combineReducers} from 'redux';
 
-let reducer1 = (state = {}, action) => {
+const initState = {
+  src: null,
+  poster: null,
+  name: null,
+  paragraphs: []
+};
+
+let reducer1 = (state = initState, action) => {
   switch (action.type) {
     case LOAD_VIDEO_DATA:
       return Object.assign(state, action.payload);
@@ -15,7 +21,7 @@ let reducer1 = (state = {}, action) => {
   }
 }
 
-let reducer2 = (state = {}, action) => {
+let reducer2 = (state = initState, action) => {
   switch (action.type) {
     case LOAD_USER_INFO:
       return Object.assign(state, action.payload);
@@ -24,14 +30,5 @@ let reducer2 = (state = {}, action) => {
   }
 }
 
-let reducer3 = (state = {}, action) => {
-  switch (action.type) {
-    case DISPLAY_SK:
-      return Object.assign(state, action.payload);
-    default:
-      return state;
-  }
-}
-
-let combinedReducers = combineReducers({reducer1, reducer2, reducer3});
+let combinedReducers = combineReducers({reducer1, reducer2});
 export default combinedReducers;
