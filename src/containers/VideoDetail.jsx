@@ -5,9 +5,9 @@ import { Footer } from './Footer';
 import VideoIntroduce from './VideoIntroduce';
 import VideoPlayer from './VideoPlayer';
 import { connect } from 'react-redux';
-import {loadVideo, loadUserInfo} from './actions';
+import {loadVideo, loadUserInfo} from './method/index';
 import { bindActionCreators } from 'redux';
-
+import * as actions from './actions/action';
 
 // ==================
 // 最终要交给redux管理的所有变量
@@ -15,8 +15,7 @@ import { bindActionCreators } from 'redux';
 
 function mapStateToProps (state) {
   return {
-    vedioInfo: state.reducer1,
-    userInfo: state.reducer2
+    info: state.reducer1
   };
 }
 
@@ -25,10 +24,12 @@ function mapStateToProps (state) {
 // 既定义哪些方法将成为action
 // ==================
 function mapDispatchToProps (dispatch) {
+  //return bindActionCreators(actions, dispatch);
+
   return {
-    dispatchVedioInfo : (data) => dispatch(data),
-    dispatchUserInfo: (data) => dispatch(data)
-  };
+    setVedioInfo : (data) => dispatch(data),
+    setUserInfo: (data) => dispatch(data)
+  }
 
 }
 
@@ -45,20 +46,20 @@ class VideoDetail extends React.Component {
     }
 
   componentWillMount() {
-    const {dispatchVedioInfo, dispatchUserInfo} = this.props;
-    dispatchVedioInfo(loadVideo());
-    dispatchUserInfo(loadUserInfo());
+    const {setVedioInfo, setUserInfo} = this.props;
+    setVedioInfo(loadVideo());
+    setUserInfo(loadUserInfo());
   }
 
 
     render() {
-        const {vedioInfo, userInfo} = this.props;
+        const {info} = this.props;
         return (
             <div className="container">
-                <Header title={userInfo.name + '正在看XXX视频'} />
+                //<Header title={info.name + '正在看XXX视频'} />
                 <div className="content">
-                    <VideoPlayer src={vedioInfo.src}
-                        poster={vedioInfo.poster}
+                    <VideoPlayer src={info.src}
+                        poster={info.poster}
                         onPlay={() => { console.log('视频正在播放') }}
                         onPause={() => { console.log('视频已经暂停') }} />
                     <VideoIntroduce paragraphs={this.state.paragraphs} />

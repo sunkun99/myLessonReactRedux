@@ -1,6 +1,6 @@
 import axios from 'axios';
-import * as types from './types';
-import store from '../../stores/index';
+import * as types from './../actions/types';
+
 export function loadVideo() {
   //return (dispatch) => {
   //  axios
@@ -30,7 +30,7 @@ export function loadVideo() {
 
 export function loadUserInfo() {
   return {
-    type: types.LOAD_USER_INFO,
+    type: 'LOAD_USER_INFO',
     payload: {
       name: 'sk'
     }
