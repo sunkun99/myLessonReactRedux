@@ -4,6 +4,7 @@
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import reduxThunkMiddleware from 'redux-thunk';
 import reducers from '../containers/reducers/';
+import promiseMiddleware from 'redux-promise';
 
 let createLogger;
 if (process.env.NODE_ENV !== 'production') {
@@ -11,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 function reduxStore(initialState) {
-  let middlewares = [reduxThunkMiddleware];
+  let middlewares = [reduxThunkMiddleware, promiseMiddleware];
   if (process.env.NODE_ENV !== 'production') {
     middlewares = middlewares.concat([
       createLogger()

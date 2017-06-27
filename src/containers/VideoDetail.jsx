@@ -15,7 +15,8 @@ import * as actions from './actions/action';
 
 function mapStateToProps (state) {
   return {
-    info: state.reducer1
+    vedioData: state.vedioDataReducer,
+    userInfo:  state.userInfoReducer
   };
 }
 
@@ -24,12 +25,12 @@ function mapStateToProps (state) {
 // 既定义哪些方法将成为action
 // ==================
 function mapDispatchToProps (dispatch) {
-  //return bindActionCreators(actions, dispatch);
+  return bindActionCreators(actions, dispatch);
 
-  return {
-    setVedioInfo : (data) => dispatch(data),
-    setUserInfo: (data) => dispatch(data)
-  }
+  // return {
+  //   setVedioInfo : (data) => dispatch(data),
+  //   setUserInfo: (data) => dispatch(data)
+  // }
 
 }
 
@@ -47,22 +48,22 @@ class VideoDetail extends React.Component {
 
   componentWillMount() {
     const {setVedioInfo, setUserInfo} = this.props;
-    setVedioInfo(loadVideo());
-    setUserInfo(loadUserInfo());
+    setVedioInfo();
+    setUserInfo();
   }
 
 
     render() {
-        const {info} = this.props;
+        const {vedioData, userInfo} = this.props;
         return (
             <div className="container">
-                //<Header title={info.name + '正在看XXX视频'} />
+                <Header title={userInfo.name + '正在看XXX视频'} />
                 <div className="content">
-                    <VideoPlayer src={info.src}
-                        poster={info.poster}
+                    <VideoPlayer src={vedioData.src}
+                        poster={vedioData.poster}
                         onPlay={() => { console.log('视频正在播放') }}
                         onPause={() => { console.log('视频已经暂停') }} />
-                    <VideoIntroduce paragraphs={this.state.paragraphs} />
+                    <VideoIntroduce paragraphs={vedioData.paragraphs} />
                 </div>
                 <Footer />
             </div>

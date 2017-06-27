@@ -6,29 +6,33 @@ import {
 import {combineReducers} from 'redux';
 
 const initState = {
-  src: null,
-  poster: null,
-  name: null,
-  paragraphs: []
+  vedioData: {
+    src: '',
+    poster: '',
+    paragraphs: []
+  },
+  userInfo: {
+    name: ''
+  }
 };
 
-let reducer1 = (state = initState, action) => {
+let vedioDataReducer = (state = initState.vedioData, action) => {
   switch (action.type) {
     case LOAD_VIDEO_DATA:
-      return Object.assign(state, action.payload);
+      return Object.assign({}, state, action.payload);
     default:
       return state;
   }
 }
 
-let reducer2 = (state = initState, action) => {
+let userInfoReducer = (state = initState.userInfo, action) => {
   switch (action.type) {
     case LOAD_USER_INFO:
-      return Object.assign(state, action.payload);
+      return Object.assign({}, state, action.payload);
     default:
       return state;
   }
 }
 
-let combinedReducers = combineReducers({reducer1, reducer2});
+let combinedReducers = combineReducers({vedioDataReducer, userInfoReducer});
 export default combinedReducers;
