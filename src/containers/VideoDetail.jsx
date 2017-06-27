@@ -15,8 +15,7 @@ import * as actions from './actions/action';
 
 function mapStateToProps (state) {
   return {
-    vedioData: state.vedioDataReducer,
-    userInfo:  state.userInfoReducer
+    info: state.combinedActions
   };
 }
 
@@ -54,16 +53,17 @@ class VideoDetail extends React.Component {
 
 
     render() {
-        const {vedioData, userInfo} = this.props;
+        const {info} = this.props;
+        console.log('sk', info);
         return (
             <div className="container">
-                <Header title={userInfo.name + '正在看XXX视频'} />
+                <Header title={info.name + '正在看XXX视频'} />
                 <div className="content">
-                    <VideoPlayer src={vedioData.src}
-                        poster={vedioData.poster}
+                    <VideoPlayer src={info.src}
+                        poster={info.poster}
                         onPlay={() => { console.log('视频正在播放') }}
                         onPause={() => { console.log('视频已经暂停') }} />
-                    <VideoIntroduce paragraphs={vedioData.paragraphs} />
+                    <VideoIntroduce paragraphs={info.paragraphs} />
                 </div>
                 <Footer />
             </div>
