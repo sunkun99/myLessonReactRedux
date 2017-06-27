@@ -1,5 +1,5 @@
 import { createAction } from 'redux-actions';
-import * as ActionTypes from './types';
+import ActionTypes from './types';
 import {loadVideo, loadUserInfo} from '../method/index';
 
 export const setVedioInfo = createAction(

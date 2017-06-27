@@ -1,13 +1,11 @@
 import React from 'react';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from './actions/action';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import VideoIntroduce from './VideoIntroduce';
 import VideoPlayer from './VideoPlayer';
-import { connect } from 'react-redux';
-import {loadVideo, loadUserInfo} from './method/index';
-import { bindActionCreators } from 'redux';
-import * as actions from './actions/action';
 
 // ==================
 // 最终要交给redux管理的所有变量
@@ -15,7 +13,8 @@ import * as actions from './actions/action';
 
 function mapStateToProps (state) {
   return {
-    info: state.combinedActions
+    vedioData: state.vedioDetailReducer.vedioData,
+    userInfo:  state.vedioDetailReducer.userInfo
   };
 }
 
@@ -45,7 +44,7 @@ class VideoDetail extends React.Component {
         }
     }
 
-  componentWillMount() {
+  componentDidMount() {
     const {setVedioInfo, setUserInfo} = this.props;
     setVedioInfo();
     setUserInfo();
@@ -53,17 +52,17 @@ class VideoDetail extends React.Component {
 
 
     render() {
-        const {info} = this.props;
-        console.log('sk', info);
+        const {vedioData, userInfo} = this.props;
+        // console.log('sk', info);
         return (
             <div className="container">
-                <Header title={info.name + '正在看XXX视频'} />
+                <Header title={userInfo.name + '正在看XXX视频'} />
                 <div className="content">
-                    <VideoPlayer src={info.src}
-                        poster={info.poster}
+                    <VideoPlayer src={vedioData.src}
+                        poster={vedioData.poster}
                         onPlay={() => { console.log('视频正在播放') }}
                         onPause={() => { console.log('视频已经暂停') }} />
-                    <VideoIntroduce paragraphs={info.paragraphs} />
+                    <VideoIntroduce paragraphs={vedioData.paragraphs} />
                 </div>
                 <Footer />
             </div>

@@ -1,2 +1,7 @@
-export const LOAD_VIDEO_DATA = 'LOAD_VIDEO_DATA';
-export const LOAD_USER_INFO = 'LOAD_USER_INFO';
+// export const LOAD_VIDEO_DATA = 'LOAD_VIDEO_DATA';
+// export const LOAD_USER_INFO = 'LOAD_USER_INFO';
+
+export default {
+  LOAD_VIDEO_DATA: 'LOAD_VIDEO_DATA',
+  LOAD_USER_INFO: 'LOAD_USER_INFO'
+}
