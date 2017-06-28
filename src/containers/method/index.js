@@ -10,8 +10,6 @@ export const loadVideo = async(data) => {
   }
 };
 
-export function loadUserInfo() {
-  return {
-      name: 'sk'
-  }
+export const loadUserInfo = (userName) => {
+  return {name: userName}
 }

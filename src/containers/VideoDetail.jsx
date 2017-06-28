@@ -7,9 +7,9 @@ import { Footer } from './Footer';
 import VideoIntroduce from './VideoIntroduce';
 import VideoPlayer from './VideoPlayer';
 
-// ==================
+// ==========================
 // 最终要交给redux管理的所有变量
-// ==================
+// ==========================
 
 function mapStateToProps (state) {
   return {
@@ -18,10 +18,10 @@ function mapStateToProps (state) {
   };
 }
 
-// ==================
+// ============================
 // 最终要交给redux管理的所有action
 // 既定义哪些方法将成为action
-// ==================
+// ============================
 function mapDispatchToProps (dispatch) {
   return bindActionCreators(actions, dispatch);
 
@@ -47,13 +47,12 @@ class VideoDetail extends React.Component {
   componentDidMount() {
     const {setVedioInfo, setUserInfo} = this.props;
     setVedioInfo();
-    setUserInfo();
+    setUserInfo('sk');
   }
 
 
     render() {
         const {vedioData, userInfo} = this.props;
-        // console.log('sk', info);
         return (
             <div className="container">
                 <Header title={userInfo.name + '正在看XXX视频'} />
